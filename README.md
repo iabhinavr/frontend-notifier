@@ -1,8 +1,10 @@
 This is a plugin for headless WordPress sites. It watches for content updates, including new post/page publishes, updates, etc. and stores the list of new/modified posts in a file within the plugin directory. Then it notifies the frontend (built using Next.js, Vue, etc) with this data, so that the frontend server can rebuild those posts/pages.
 
-In short, it helps frontend systems to regenerate just the modified posts, without the need to regenerate the entire site. For instance, you can use this plugin with Next.js' on-demand revalidation feature. 
+In short, it helps frontend servers to regenerate just the modified posts, without the need to regenerate the entire site. For instance, you can use this plugin with Next.js' on-demand revalidation feature. 
 
 From the plugin's settings page, the site admin can initiate an API request to the site's frontend. Your WordPress site will then send an HTTP request to the frontend API, which contains the data in json format.
+
+You can view the data format in the plugin's settings page. The data is read from the file update_data.json located inside the plugin directory. If there are multiple posts in the queue, the plugin sends them one by one, so that it won't overload the frontend server.
 
 By the way, for this to work, the frontend should be properly configured to receive this data.
 
